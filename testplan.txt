@@ -1,0 +1,76 @@
+* Client-side testing
+    * configure
+        * Run the server on ilab and connect to it on IP 127.0.0.1.
+        * Assume all commands after this still have the server running.
+    * checkout
+        * Request a project that doesn't exist on the server.
+        * Request a project that does exist on the server.
+    * update
+        * Request to update a non-existent project.
+        * Update project when server and local manifest have matching versions.
+        * Update project when server and local manifest have non-matching versions.
+    * upgrade
+        * Upgrade project when the project does not exist locally.
+        * Ran when the server does not have the project.
+        * Ran when there is a .Conflict.
+        * Ran with an empty .Update.
+        * Ran with a non-empty .Update.
+    * commit
+        * Commit when project does not exist locally.
+        * Ran with empty .Update.
+        * Ran with non-empty .Conflict.
+        * Ran with matching server and local Manifests.
+        * Ran with non-matching server and local Manifests.
+    * push
+        * Push with no local project.
+        * Ran when the server does not have the project.
+        * Ran with empty .Commit.
+        * Ran with non-existent .Commit.
+        * Ran with non-existent .Manifest.
+        * Ran with non-empty .Commit.
+    * create
+        * Create with project that already exists.
+        * Ran with project that does not already exist.
+    * destroy
+        * Destroy with project that does not already exist.
+        * Ran with project that does exist.
+    * add 
+        * Add a file that doesn't exist locally.
+        * Ran with a file that does exist locally.
+    * remove
+        * Remove a file that isn't already in the .Manifest.
+        * Ran with a file that is in the .Manifest.
+    * currentversion
+        * Checked current version of a project that doesn't exist on the server.
+        * Ran with project that does exist on server.
+    * history
+        * Checked history of a project that doesn't exist on the server.
+        * Ran with project that does exist on server.
+    * rollback
+        * Rolled back project to negative version.
+        * Ran with version that the server has not reached yet.
+        * Ran with version that the server is already on.
+        * Ran with version that the server is ahead of.
+
+* Server-side testing
+    * Binding to a specified port 
+        * Ensured a non-number would not be taken.
+        * Ensured that the number would only be accepted if it fit within the acceptable range of port numbers.
+    * Dealing with the manifest 
+        * Tested string manipulation methods to get filepath and such.
+        * Tested sorting algorithm on new .Manifest file.
+    * Mutexes
+        * Ensured using fork() that once a mutex is locked, no other threads would be able to tamper with the information while the original thread was using it.
+    * Multithreading
+        * First ensured that the server was able to accept at least one thread.
+        * Next, used fork() to test if multiple connects were being entertained.
+    * Freeing on sudden exit
+        * Tested common linked list algorithms and methods in exitLeaks.c to ensure they were usable for the purpose of freeing.
+        * Next, stored dummy variables into them to check whether or not they were stored correctly.
+        * Next, freed a single node's contents to check if this was done correctly.
+        * Finally, ran a method to check whether or not it could free an entire linked list correctly.
+        * After initial testing, implemented the use of this linked list to store all the memory allocations in server.  Once the server closed for any reason, checked to make sure all 
+        mallocs were freed appropriately.
+    * ./WTF commands
+        * See above
+

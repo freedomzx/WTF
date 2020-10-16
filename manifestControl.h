@@ -1,0 +1,10 @@
+void md5hash(char* input, char* buffer);
+void commitToManifest(char* projectName, char* commitContents, int newVersion);
+void createManifest(char* projectName, int versionNum);
+void createHistory(char* projectName);
+void sortManifest(char* projectName);
+char* convertHash(char* filePath);
+char* convertHashGivenHash(char* hash);
+void incrementManifestVersion( char* manifestPath );
+char* getEntryFromManifest( char* manifestPath, char* filename );
+int removeEntryFromManifest( char* manifestPath, char* filename );
